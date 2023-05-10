@@ -15,7 +15,19 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"mongodb.mongodb-vscode"
+				"mongodb.mongodb-vscode",
+				"GitHub.copilot-nightly",
+				"GitHub.copilot-chat",
+				"GitHub.codespaces",
+				"ms-vscode-remote.remote-containers",
+				"vscodevim.vim",
+				"Gruntfuggly.todo-tree",
+				"ms-playwright.playwright",
+				"esbenp.prettier-vscode",
+				"formulahendry.auto-rename-tag",
+				"formulahendry.auto-close-tag",
+				"csstools.postcss",
+				"vunguyentuan.vscode-css-variables"
 			]
 		}
 	}
