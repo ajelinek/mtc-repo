@@ -48,6 +48,12 @@
 	"portsAttributes": {
 	  "8081": {
 		"label": "mongo-express-ui"
+	  },
+	  "2021": {
+		"label": "api"
+	  },
+	  "3000" : {
+		"label": "web"
 	  }
 	},
 	"forwardPorts": [8081],
