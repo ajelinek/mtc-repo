@@ -10,10 +10,13 @@ export default function App() {
       <h1>Lean Coffee</h1>
       <nav>
         <ul>
-          <li><A href="/">Lean Coffee</A></li>
-          <li><A href="/meeting">New Meeting</A></li>
+          <li>
+            <A href="/">Lean Coffee</A>
+          </li>
+          <li>
+            <A href="/meeting">New Meeting</A>
+          </li>
         </ul>
-
       </nav>
       <Routes>
         <Route path="/" component={Home} />
@@ -26,5 +29,5 @@ export default function App() {
         />
       </Routes>
     </>
-  );
+  )
 }
