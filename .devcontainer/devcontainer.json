@@ -56,7 +56,7 @@
 		"label": "web"
 	  }
 	},
-	"forwardPorts": [8081],
+	"forwardPorts": [3000, 2021, 8081],
 	// "postCreateCommand": "docker-compose up -d"
 	"postStartCommand": "docker-compose up -d"
   }
