@@ -5,7 +5,7 @@ const [meetingId, setMeetingId] = createSignal<string | null>(null)
 
 async function handler(e: MouseEvent) {
   try {
-    const id = await client.newMeeting.query({})
+    const id = await client.meetings.createNewMeeting.query()
     console.log(id)
     setMeetingId(id)
   } catch (e) {

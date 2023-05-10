@@ -1,12 +1,11 @@
 import { createTRPCProxyClient, httpBatchLink, loggerLink } from '@trpc/client'
-import type { AppRouter } from '../../../api/src/server'
-import { tap } from '@trpc/server/observable'
+import type { AppRouterDefinition } from 'api/src/index'
 
-const client = createTRPCProxyClient<AppRouter>({
+const client = createTRPCProxyClient<AppRouterDefinition>({
   links: [
     loggerLink(),
     httpBatchLink({
-      url: 'http://localhost:2021/trpc'
+      url: 'http://localhost:2021/'
     })
   ]
 })
