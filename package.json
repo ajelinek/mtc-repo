@@ -1,0 +1,20 @@
+{
+  "name": "mtc-repo",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicago-mtc/mtc-repo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chicago-mtc/mtc-repo/issues"
+  },
+  "homepage": "https://github.com/chicago-mtc/mtc-repo#readme",
+  "workspaces": [
+    "api",
+    "e2e",
+    "ui"
+  ]
+}
