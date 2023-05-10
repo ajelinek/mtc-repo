@@ -1,8 +1,9 @@
 import { render } from 'solid-js/web';
+import { Router } from "@solidjs/router";
+import App from "./App"
 
-import { TodoList } from './todo-list';
 
-const root = document.getElementById('root');
+const root = document.getElementById('app');
 
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   throw new Error(
@@ -10,4 +11,11 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <TodoList />, root!);
+render(
+  () => (
+    <Router>
+      <App />
+    </Router>
+  ),
+  document.getElementById("app")!
+);
