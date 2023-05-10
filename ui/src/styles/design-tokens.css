@@ -1,0 +1,252 @@
+/** 
+ Design tokens are traditional managed by 3 levels, the core colors and sizes
+ From there they are made into the root layer, system, and finally components.
+ --lc-root-xxx
+ --lc-app-xxx-100 - lc-app-xxx-900 
+ --lc-cmp-xxx
+ In this model the base level is the available colors, the second level would describe
+ the ended meaning of the color, and the last would assign it to a specific element
+
+ --lc-<r, s, c>
+    r -> root level, s -> system level, c - component level
+
+ --lc-r-name  _root level_
+   represents the root style like dark blue, dark, light, color names
+
+ --lc-s-<category>-<range>   _system level_
+     represents the options used to define the range of available styles.  
+     usually created from the root values, whenever possible.
+       * category -> color, spacing, font-size, padding, margin, radius etc
+       * range -> 100, 200, ..., 500, ..., 900  500 is primary
+
+  --lc-c-<component>-<sub-component>-<state> _component level_
+     represents the specific component types and how everything should be styled.
+     component styles should only be built from system styles
+     * component -> button, header, text, 
+     * sub-component -> primary button, warning button, etc
+     * state -> active, disabled, base
+ 
+*/
+
+:root {
+  /****************************************************************************/
+  /* BASE LEVEL TOKENS
+  /****************************************************************************/
+
+  /* Fonts */
+  --lc-r-size: 11px;
+  --lc-r-size-100: calc(var(--lc-r-size) + 1px);
+  --lc-r-size-200: calc(var(--lc-r-size) + 2px);
+  --lc-r-size-300: calc(var(--lc-r-size) + 3px);
+  --lc-r-size-400: calc(var(--lc-r-size) + 4px);
+  --lc-r-size-500: calc(var(--lc-r-size) + 5px);
+  --lc-r-size-600: calc(var(--lc-r-size) + 6px);
+  --lc-r-size-700: calc(var(--lc-r-size) + 7px);
+  --lc-r-size-800: calc(var(--lc-r-size) + 8px);
+  --lc-r-size-900: calc(var(--lc-r-size) + 9px);
+
+
+  /****************************************************************************/
+  /* App/System level tokens
+  /****************************************************************************/
+
+  --lc-s-font-family: Helvetica Neue,Arial,sans-serif;
+
+  /* font  */
+  --lc-s-font-size-100: 0.8rem;
+  --lc-s-font-size-200: 0.85rem;
+  --lc-s-font-size-300: 0.9rem;
+  --lc-s-font-size-400: 0.95rem;
+  --lc-s-font-size-500: 1rem;
+  --lc-s-font-size-600: 1.25rem;
+  --lc-s-font-size-700: 1.5rem;
+  --lc-s-font-size-800: 1.75rem;
+  --lc-s-font-size-900: 2rem;
+
+  /* Spacing */
+  --lc-s-spacing-100: 0.15rem;
+  --lc-s-spacing-200: 0.25rem;
+  --lc-s-spacing-300: 0.5rem;
+  --lc-s-spacing-400: 0.75rem;
+  --lc-s-spacing-500: 1rem;
+  --lc-s-spacing-600: 1.25rem;
+  --lc-s-spacing-700: 1.5rem;
+  --lc-s-spacing-800: 1.75rem;
+  --lc-s-spacing-900: 2rem;
+
+  /* Border Radius */
+  --lc-s-radius-200: 2px;
+  --lc-s-radius-500: 5px;
+  --lc-s-radius-700: 10px;
+  --lc-s-radius-900: 15px;
+
+  /* Colors */
+  --lc-s-color-error: var(--lc-r-red);
+  --lc-s-color-warning: var(--lc-r-orange);
+
+  --lc-s-color-primary-100: #66ffff;
+  --lc-s-color-primary-200: #00ffff;
+  --lc-s-color-primary-300: #00ffff;
+  --lc-s-color-primary-400: #00cccc;
+  --lc-s-color-primary-500: #00B7B8;
+  --lc-s-color-primary-600: #00b3b3;
+  --lc-s-color-primary-700: #009999;
+  --lc-s-color-primary-800: #008080;
+  --lc-s-color-primary-900: #003333;
+
+  --lc-s-color-secondary-100: #6d80df;
+  --lc-s-color-secondary-200: #435bd6;
+  --lc-s-color-secondary-300: #2942bc;
+  --lc-s-color-secondary-400: #203392;
+  --lc-s-color-secondary-500: #1a2975;
+  --lc-s-color-secondary-600: #172569;
+  --lc-s-color-secondary-700: #121d54;
+  --lc-s-color-secondary-800: #0e163f;
+  --lc-s-color-secondary-900: #090f2a;
+
+  --lc-s-color-tertiary-100: #ff98ad;
+  --lc-s-color-tertiary-200: #ff6685;
+  --lc-s-color-tertiary-300: #ff4d70;
+  --lc-s-color-tertiary-400: #ff1a47;
+  --lc-s-color-tertiary-500: #ff0035;
+  --lc-s-color-tertiary-600: #e6002e;
+  --lc-s-color-tertiary-700: #cc0029;
+  --lc-s-color-tertiary-800: #b30024;
+  --lc-s-color-tertiary-900: #80001a;
+
+  --lc-s-color-dark-100: #033863;
+  --lc-s-color-dark-200: #033863;
+  --lc-s-color-dark-300: #022a4b;
+  --lc-s-color-dark-400: #011c32;
+  --lc-s-color-dark-500: #011627;
+  --lc-s-color-dark-700: #010e19;
+  --lc-s-color-dark-900: #000000;
+
+  --lc-s-color-light-100: #ffffff;
+  --lc-s-color-light-500:#f6f7f8;
+  --lc-s-color-light-600: #e2e6e9;
+  --lc-s-color-light-700: #c6ccd2;
+  --lc-s-color-light-800: #a9b3bc;
+  --lc-s-color-light-900: #8d99a5;
+
+  /****************************************************************************/
+  /* Component level tokens
+  /****************************************************************************/
+  /* Body */
+  --lc-c-body-font: var(--lc-s-font-family);
+  --lc-c-body-background: var(--lc-s-color-light-100);
+  --lc-c-body-text-color: var(--lc-s-color-dark-700);
+  --lc-c-body-highlighted-text-color: var(--lc-s-color-primary-100);
+
+  --lc-c-section-boarder: 1px solid var(--lc-s-color-light-900);
+
+  --lc-c-overlay-background-color: #022a4ba1;
+
+  /*Layout Sizes*/
+  --lc-c-layout-main-header-height: 4rem;
+  --lc-c-layout-footer-height: 2rem;
+  --lc-c-layout-body-content-height: calc(100vh - var(--lc-c-layout-main-header-height) - var(--lc-c-layout-footer-height));
+  --lc-c-page-h-padding: var(--lc-s-spacing-400);
+  --lc-c-page-h-margin: calc(var(--lc-c-page-h-padding) * -1);
+
+  --lc-c-container-radius: var(--lc-s-radius-500);
+  --lc-c-container-padding: var(--lc-r-size-600);
+
+  --lc-c-error-container-background-color: var(--lc-s-color-tertiary-500);
+  --lc-c-error-container-text-color: var(--lc-s-color-light-500);
+  --lc-c-error-container-text-size: var(--lc-s-font-size-500);
+  
+  /* Labels */
+  --lc-c-label-box-background-color: var(--lc-s-color-dark-300);
+  --lc-c-label-box-text-color: var(--lc-s-color-light-500);
+
+  /* Scrollbar */
+  --lc-c-scrollbar-color: var(--lc-s-color-dark-200);
+  --lc-c-scrollbar-radius: var(--lc-s-radius-500);
+  --lc-c-scrollbar-width: 4px;
+
+  /* Header */
+  --lc-c-header-h1-font-family: var(--lc-s-font-family);
+  --lc-c-header-h1-font-size: var(--lc-s-font-size-700);
+  --lc-c-header-h1-font-weight: 500;
+  --lc-c-header-h1-font-color: var(--lc-s-color-primary-500);
+
+  --lc-c-header-h2-font-family: var(--lc-s-font-family);
+  --lc-c-header-h2-font-size: var(--lc-s-font-size-700);
+  --lc-c-header-h2-font-weight: 800;
+  --lc-c-header-h2-font-color: var(--lc-s-color-primary-500);
+
+  --lc-c-header-h3-font-family: var(--lc-s-font-family);
+  --lc-c-header-h3-font-size: var(--lc-s-font-size-500);
+  --lc-c-header-h3-font-weight: 800;
+  --lc-c-header-h3-font-color: var(--lc-s-color-secondary-500);
+
+  /* Buttons */
+  --lc-c-button-font-size: var(--lc-s-font-size-500);
+  --lc-c-button-font-color: var(--lc-s-color-dark-500);
+  --lc-c-button-v-padding: var(--lc-s-spacing-200);
+  --lc-c-button-h-padding: var(--lc-s-spacing-400);
+  --lc-c-button-border-radius: 5px;
+  --lc-c-button-border: solid 2px;
+  --lc-c-button-border-color: var(--lc-s-color-dark-500);
+  --lc-c-button-background-color: none;
+  --lc-c-button-min-width: 5rem;
+  --lc-c-button-font-weight: 600;
+
+  --lc-c-button-primary-background-color: var(--lc-s-color-primary-500);
+  --lc-c-button-primary-border-color: var(--lc-s-color-primary-800);
+  --lc-c-button-primary-font-color: var(--lc-s-color-light-500);
+
+  --lc-c-button-warning-background-color: var(--lc-s-color-error);
+  --lc-c-button-warning-border-color: var(--lc-s-color-error);
+  --lc-c-button-warning-font-color: var(--lc-s-color-light-100);
+
+  --lc-c-button-icon-background-color: var(--lc-c-body-background);
+  --lc-c-button-icon-h-padding: var(--lc-s-spacing-500);
+  --lc-c-button-icon-icon-color: var(--lc-s-color-primary-500);
+
+  /* Input Fields */
+  --lc-c-input-font-size: var(--lc-s-font-size-500);
+  --lc-c-input-padding: var(--lc-s-spacing-200);
+  --lc-c-input-boarder-color: var(--lc-s-color-secondary-800);
+  --lc-c-input-boarder-radius: var(--lc-s-radius-500);
+  --lc-c-input-background-color: var(--lc-c-body-background);
+  --lc-c-input-box-shadow: var(--lc-c-input-focus-color) 0px 0px 5px;
+
+  --lc-c-input-focus-color: var(--lc-s-color-primary-700);
+  --lc-c-input-label-text-color: var(--lc-s-color-dark-500);
+
+  /*Page Specific Styles*/
+  --lc-c-auth-page-background-color: var(--lc-s-color-dark-400);
+  --lc-c-auth-page-text-color: var(--lc-s-color-light-500);
+  --lc-c-auth-page-text-size: var(--lc-s-font-size-800);
+
+  --lc-c-error-page-message-color: var(--lc-s-color-tertiary-700);
+
+  --lc-c-footer-background-color: var(--lc-s-color-dark-500);
+  --lc-c-footer-text-color: var(--lc-s-color-light-500);
+
+  --lc-c-header-background-color: var(--lc-s-color-dark-500);
+  --lc-c-header-text-color: var(--lc-s-color-primary-500);
+
+  --lc-c-selection-background-color: var(--lc-c-input-background-color);
+  --lc-c-selection-highlight-color: var(--lc-c-input-focus-color);
+  --lc-c-selection-selected-text-color: var(--lc-s-color-light-500);
+  
+  /*Icons*/
+  --lc-c-header-icon-color: var(--lc-s-color-tertiary-500);
+  --lc-c-loading-icon-color: var(--lc-s-color-tertiary-700);
+  --lc-c-loading-icon-size: var(--lc-s-font-size-700);
+
+  --lc-c-bug-icon-color: var(--lc-s-color-tertiary-900);
+
+  --lc-c-status-icon-ok-initial: var(--lc-s-color-light-500);
+  --lc-c-status-icon-ok-color: var(--lc-s-color-primary-500);
+  --lc-c-status-icon-warning-color: var(--lc-s-color-tertiary-100);
+  --lc-c-status-icon-error-color: var(--lc-s-color-tertiary-700);
+
+  --lc-c-checkbox-boarder-color: var(--lc-s-color-primary-700);
+  --lc-c-checkbox-cheked-background-color: var(--lc-s-color-primary-600);
+  --lc-c-checkbox-uncheked-background-color: var(--lc-c-auth-page-background-color);
+
+}
