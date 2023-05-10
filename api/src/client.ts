@@ -67,6 +67,7 @@ async function main() {
 
   const msgs = await trpc.message.listMessages.query();
   console.log('msgs', msgs);
+  await authedClient.newMeeting.query();
 
   console.log('👌 should be a clean exit if everything is working right');
 }

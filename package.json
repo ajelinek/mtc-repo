@@ -19,5 +19,12 @@
     "api",
     "e2e",
     "ui"
-  ]
+  ],
+  "devDependencies": {
+    "postcss": "^8.4.23",
+    "postcss-import": "^15.1.0",
+    "postcss-modules": "^6.0.0",
+    "postcss-preset-env": "^8.3.2",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
 }
