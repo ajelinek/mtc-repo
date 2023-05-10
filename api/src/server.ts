@@ -3,6 +3,9 @@ import * as trpcExpress from '@trpc/server/adapters/express';
 import { EventEmitter } from 'events';
 import express from 'express';
 import { z } from 'zod';
+import { customAlphabet  } from 'nanoid/non-secure'
+
+const nanoid = customAlphabet('12345678890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 5)
 
 const createContext = ({
   req,
@@ -84,6 +87,7 @@ const appRouter = router({
   // merge predefined routers
   post: postRouter,
   message: messageRouter,
+  newMeeting: publicProcedure.query(() => nanoid()),
   // or individual procedures
   hello: publicProcedure.input(z.string().nullish()).query(({ input, ctx }) => {
     return `hello ${input ?? ctx.user?.name ?? 'world'}`;
