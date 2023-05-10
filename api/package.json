@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev:server": "tsx watch src/server",
+        "dev:server": "tsx watch src/index",
         "dev:client": "wait-port 2021 && tsx watch src/client",
         "dev": "run-p dev:* --print-label",
         "type-check": "tsc",
