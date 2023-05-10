@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/chicago-mtc/mtc-repo.git"
   },
+  "scripts": {
+    "test": "npm run test -w ui"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
