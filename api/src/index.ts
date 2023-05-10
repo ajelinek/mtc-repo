@@ -1,10 +1,9 @@
-import { createHTTPServer } from "@trpc/server/adapters/standalone";
-import { appRouter } from "./routers";
+import express from "express";
+import { mountTRPCServer } from "./server";
 
-const server = createHTTPServer({
-  router: appRouter,
-});
+const app = express();
+mountTRPCServer(app);
 
-server.listen(2021);
+app.listen(2021);
 
 export type { AppRouterDefinition } from "./routers";
