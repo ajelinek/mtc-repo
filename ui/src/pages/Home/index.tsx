@@ -1,3 +1,11 @@
+import "./style.css"
+
 export default function Home() {
-  return <h3>Home</h3>
+  return (
+    <>
+      <div class="app-header">
+        <h1>☕️ Lean Coffee</h1>
+      </div>
+    </>
+  )
 }

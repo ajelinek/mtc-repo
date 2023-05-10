@@ -1,0 +1,9 @@
+.app-header {
+    height: 10%;
+    padding-top:50px;
+    padding-bottom: 50px;
+}
+
+.app-header h1 {
+    text-align: center;
+}
