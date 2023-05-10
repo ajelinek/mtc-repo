@@ -9,6 +9,12 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  css: {
+    modules: {
+      localsConvention: 'camelCaseOnly',
+      generateScopedName: '[name]__[local]___[hash:base64:5]'
+    },
+  },
   test: {
     environment: 'jsdom',
     globals: true,
