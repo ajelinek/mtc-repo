@@ -77,13 +77,11 @@ export type AppRouter = typeof appRouter;
     }),
   );
   app.get('/', (_req, res) => res.send('hello'));
-  const server = app.listen(2021, () => {
-    console.log('listening on port 2021');
-  });
+  const server = app.listen(2021);
 
-  applyWSSHandler({
-    wss: new ws.Server({server}),
-    router: appRouter,
-    //@ts-ignore
-    createContext
-  });
+  // applyWSSHandler({
+  //   wss: new ws.Server({ server, path: '/trpc' }),
+  //   router: appRouter,
+  //   //@ts-ignore
+  //   createContext
+  // });

@@ -5,7 +5,7 @@ import { wsLink } from '@trpc/client';
 
 const url = `http://localhost:2021/trpc`;
 
-const wsClient = createWSClient({url: 'ws://localhost:2021/trpc'})
+// const wsClient = createWSClient({url: 'ws://localhost:2021/trpc'})
 
 const trpc = createTRPCProxyClient<AppRouter>({
   links: [
@@ -27,26 +27,32 @@ const trpc = createTRPCProxyClient<AppRouter>({
 
 const authedClient = createTRPCProxyClient<AppRouter>({
   links: [
-    splitLink({
-      condition: (op) => {return op.type === 'subscription'},
-      true: wsLink({client: wsClient}),
-      false: httpBatchLink({
-        url,
-        headers: () => ({
-          authorization: 'secret',
-        }),
-      })
-    })
+    // splitLink({
+    //   condition: (op) => {return op.type === 'subscription'},
+    //   true: wsLink({client: wsClient}),
+    //   false: httpBatchLink({
+    //     url,
+    //     headers: () => ({
+    //       authorization: 'secret',
+    //     }),
+    //   })
+    // })
+    httpBatchLink({
+          url,
+          headers: () => ({
+            authorization: 'secret',
+          }),
+        })
   ],
 });
 
 async function main() {
 
-  wsClient.startTimer.subscribe(undefined, {
-    onData: id => console.log('timer', id)
-  })
+  // wsClient.startTimer.subscribe(undefined, {
+  //   onData: id => console.log('timer', id)
+  // })
   
-  await authedClient.newMeeting.query();
+  console.log(await authedClient.newMeeting.query());
 }
 
 void main();
