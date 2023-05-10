@@ -16,8 +16,7 @@ export default function App() {
       </nav>
       <Routes>
         <Route path="/" component={Home} />
-        <Route path="/meeting" component={Meeting} />
-        <Route path="/meeting/:id" component={Meeting} />
+        <Route path="/meeting/:id?" component={Meeting} />
         <Route
           path="/about"
           element={<div>This site was made with Solid</div>}
