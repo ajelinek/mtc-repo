@@ -1,48 +1,18 @@
-import { DefaultErrorShape, TRPCError, inferAsyncReturnType, initTRPC } from '@trpc/server';
+import ws from 'ws';
 import * as trpcExpress from '@trpc/server/adapters/express';
 import { applyWSSHandler } from '@trpc/server/adapters/ws';
-import { EventEmitter } from 'events';
 import express from 'express';
 import { z } from 'zod';
-import { customAlphabet  } from 'nanoid/non-secure'
-import ws from 'ws';
-
-const nanoid = customAlphabet('12345678890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 5)
-
-const createContext = ({
-  req,
-  res,
-}: trpcExpress.CreateExpressContextOptions) => {
-  const getUser = () => {
-    if (req.headers.authorization !== 'secret') {
-      return null;
-    }
-    return {
-      name: 'alex',
-    };
-  };
-
-  return {
-    req,
-    res,
-    user: getUser(),
-    meta: {},
-    errorShape: {},
-    transformer: {}
-  };
-};
-type Context = inferAsyncReturnType<typeof createContext>;
-
-const t = initTRPC.context<Context>().create();
-
-const router = t.router;
-const publicProcedure = t.procedure;
+import { observable } from '@trpc/server/observable';
+import { t } from './trpc';
+import { appRouter } from './routers/index'
+import { createContext } from './context';
+ 
 
 // --------- create procedures etc
 
 // let id = 0;
 
-// const ee = new EventEmitter();
 // const db = {
 //   posts: [
 //     {
@@ -74,44 +44,18 @@ const publicProcedure = t.procedure;
 //       db.posts.push(post);
 //       return post;
 //     }),
-//   listPosts: publicProcedure.query(() => db.posts),
+//   listPosts: t.procedure.query(() => db.posts),
 // });
 
 // const messageRouter = router({
-//   addMessage: publicProcedure.input(z.string()).mutation(({ input }) => {
+//   addMessage: t.procedure.input(z.string()).mutation(({ input }) => {
 //     const msg = createMessage(input);
 //     db.messages.push(msg);
 
 //     return msg;
 //   }),
-//   listMessages: publicProcedure.query(() => db.messages),
+//   listMessages: t.procedure.query(() => db.messages),
 // });
-
-// root router to call
-const appRouter = router({
-  // merge predefined routers
-  // post: postRouter,
-  // message: messageRouter,
-  newMeeting: publicProcedure.query(() => nanoid()),
-  // or individual procedures
-  // hello: publicProcedure.input(z.string().nullish()).query(({ input, ctx }) => {
-  //   return `hello ${input ?? ctx.user?.name ?? 'world'}`;
-  // }),
-  // or inline a router
-  admin: router({
-    secret: publicProcedure.query(({ ctx }) => {
-      if (!ctx.user) {
-        throw new TRPCError({ code: 'UNAUTHORIZED' });
-      }
-      if (ctx.user?.name !== 'alex') {
-        throw new TRPCError({ code: 'FORBIDDEN' });
-      }
-      return {
-        secret: 'sauce',
-      };
-    }),
-  }),
-});
 
 export type AppRouter = typeof appRouter;
 
@@ -133,12 +77,10 @@ export type AppRouter = typeof appRouter;
     }),
   );
   app.get('/', (_req, res) => res.send('hello'));
-  const server = app.listen(2021, () => {
-    console.log('listening on port 2021');
-  });
+  const server = app.listen(2021);
 
   // applyWSSHandler({
-  //   wss: new ws.Server({server}),
+  //   wss: new ws.Server({ server, path: '/trpc' }),
   //   router: appRouter,
   //   //@ts-ignore
   //   createContext
