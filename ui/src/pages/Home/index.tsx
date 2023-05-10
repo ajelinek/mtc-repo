@@ -3,15 +3,25 @@ import { createSignal } from 'solid-js'
 
 const [meetingId, setMeetingId] = createSignal<string | null>(null)
 
-const handler = async (e: MouseEvent) => {
+async function handler(e: MouseEvent) {
   try {
-    const id = await client.newMeeting.query()
+    const id = await client.newMeeting.query({})
     console.log(id)
     setMeetingId(id)
   } catch (e) {
     console.error(e)
   }
 }
+
+// const handler = async (e: MouseEvent) => {
+//   try {
+//     const id = await client.newMeeting.query()
+//     console.log(id)
+//     setMeetingId(id)
+//   } catch (e) {
+//     console.error(e)
+//   }
+// }
 
 const Home = () => {
   return (
