@@ -1,5 +1,6 @@
 import { For } from 'solid-js';
 import { createStore } from 'solid-js/store';
+import s from './todo-list.module.css'
 
 type Todo = { id: number; text: string; completed: boolean };
 
@@ -15,7 +16,7 @@ export const TodoList = () => {
 
   return (
     <>
-      <div>
+      <div class={s.container}> 
         <input placeholder="new todo here" ref={input} />
         <button
           onClick={() => {
