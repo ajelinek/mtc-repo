@@ -4,20 +4,14 @@ const Meeting = lazy(() => import('./pages/Meeting'))
 const NoMeeting = lazy(() => import('./pages/NoMeeting'))
 const Home = lazy(() => import('./pages/Home/'))
 
+import "./styles/base-element.css"
+import "./styles/design-tokens.css"
+import "./styles/reset.css"
+import styles from "./App.module.css";
+
 export default function App() {
   return (
-    <>
-      <h1>Lean Coffee</h1>
-      <nav>
-        <ul>
-          <li>
-            <A href="/">Lean Coffee</A>
-          </li>
-          <li>
-            <A href="/meeting">New Meeting</A>
-          </li>
-        </ul>
-      </nav>
+    <div class={styles.main}>
       <Routes>
         <Route path="/" component={Home} />
         <Route path="/meeting/:id" component={Meeting} />
@@ -25,6 +19,6 @@ export default function App() {
 
         <Route path="/about" element={<div>This site was made with Solid</div>} />
       </Routes>
-    </>
+    </div>
   )
 }
