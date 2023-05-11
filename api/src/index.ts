@@ -1,7 +1,9 @@
 import express from "express";
 import { mountTRPCServer } from "./server";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 mountTRPCServer(app);
 
 app.use("/api", (req, res) => {
