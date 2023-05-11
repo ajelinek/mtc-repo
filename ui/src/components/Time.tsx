@@ -12,8 +12,8 @@ export default function TimeDisplay(props: TimeDisplayProps) {
     createEffect(() => {
         if(props.seconds() === -1 ) return
         const seconds = props.seconds() % 60
-        setSecondsDisplay(seconds === 0 ? '00' : seconds.toString())
         setMinutesDisplay(Math.floor(props.seconds() / 60).toString())
+        setSecondsDisplay(seconds === 0 ? '00' : seconds.toString().padStart(2, '0'))
     })
 
     return (<span>{minutesDisplay()}:{secondsDisplay()} </span>);
