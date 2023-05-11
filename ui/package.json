@@ -26,6 +26,7 @@
   "dependencies": {
     "@solidjs/router": "~0.8.2",
     "postcss-import": "^15.1.0",
+    "sass": "~1.62.1",
     "socket.io-client": "^4.6.1",
     "solid-js": "^1.6.10"
   }

@@ -24,7 +24,7 @@
     "ui"
   ],
   "devDependencies": {
-    "@esbuild/win32-x64": "^0.17.18",
+    "esbuild": "^0.17.18",
     "postcss": "^8.4.23",
     "postcss-import": "^15.1.0",
     "postcss-modules": "^6.0.0",
