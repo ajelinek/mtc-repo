@@ -1,22 +1,20 @@
 import client from '../../api/trpc'
-import { createSignal } from 'solid-js'
+import { useNavigate } from '@solidjs/router'
 import './style.scss'
-import { startTimer, timerSignal } from '../../store'
-import TimeDisplay from '../../components/Time'
-
-const [meetingId, setMeetingId] = createSignal<string | null>(null)
-
-async function handler(e: MouseEvent) {
-  try {
-    const id = await client.meetings.createNewMeeting.query()
-    console.log(id)
-    setMeetingId(id)
-  } catch (e) {
-    console.error(e)
-  }
-}
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  const createMeeting = async (e: MouseEvent) => {
+    try {
+      const id = await client.meetings.createNewMeeting.query()
+
+      navigate(`/meeting/${id}`)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   return (
     <>
       <div class="app-header">
@@ -32,13 +30,9 @@ const Home = () => {
         </div>
       </div>
       <div class="content">
-        <button class="button1" onClick={(e) => handler(e)}>Create Meeting</button>
-      </div>
-      <div class="debug">
-        <p>Timer: <TimeDisplay seconds={timerSignal.value} /></p>
-        <button class="button1" onClick={() => startTimer()}>Start</button>
-        <button class="button1" onClick={(e) => handler(e)}>Test</button>
-        <h3>Meeting Id: {meetingId()}</h3>
+        <button class="button1" onClick={(e) => createMeeting(e)}>
+          Create Meeting
+        </button>
       </div>
     </>
   )

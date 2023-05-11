@@ -13,7 +13,6 @@ export default function (socket: mySocket, io: myServer) {
           interval = null;
         } else {
           io.emit("timerUpdate", seconds);
-          console.log(seconds);
         }
       }, 1000);
     }
