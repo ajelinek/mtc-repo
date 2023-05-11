@@ -1,11 +1,36 @@
-import "./style.css"
+import client from '../../api/trpc'
+import { createSignal } from 'solid-js'
 
-export default function Home() {
+const [meetingId, setMeetingId] = createSignal<string | null>(null)
+
+async function handler(e: MouseEvent) {
+  try {
+    const id = await client.meetings.createNewMeeting.query()
+    console.log(id)
+    setMeetingId(id)
+  } catch (e) {
+    console.error(e)
+  }
+}
+
+// const handler = async (e: MouseEvent) => {
+//   try {
+//     const id = await client.newMeeting.query()
+//     console.log(id)
+//     setMeetingId(id)
+//   } catch (e) {
+//     console.error(e)
+//   }
+// }
+
+const Home = () => {
   return (
     <>
-      <div class="app-header">
-        <h1>☕️ Lean Coffee</h1>
-      </div>
+      <h3>Home</h3>
+      <button onClick={(e) => handler(e)}>Test</button>
+      Meeting Id: {meetingId()}
     </>
   )
 }
+
+export default Home
