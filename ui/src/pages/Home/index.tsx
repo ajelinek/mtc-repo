@@ -1,5 +1,7 @@
 import client from '../../api/trpc'
 import { createSignal } from 'solid-js'
+import { startTimer, timerSignal } from '../../store'
+import TimeDisplay from '../../components/Time'
 
 const [meetingId, setMeetingId] = createSignal<string | null>(null)
 
@@ -23,10 +25,14 @@ async function handler(e: MouseEvent) {
 //   }
 // }
 
+
 const Home = () => {
   return (
     <>
       <h3>Home</h3>
+      <p>{Math.floor(timerSignal.value() / 60)}:{Math.floor(timerSignal.value() % 60)}</p>
+      <p>Timer: <TimeDisplay seconds={timerSignal.value() || 0} /></p>
+      <button onClick={() => startTimer()}>Start</button>
       <button onClick={(e) => handler(e)}>Test</button>
       Meeting Id: {meetingId()}
     </>

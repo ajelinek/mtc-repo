@@ -24,12 +24,16 @@ export function mountSockets(server: http.Server) {
     ServerToClientEvents,
     InterServerEvents,
     SocketData
-  >(server);
+  >(server, {
+    cors: {
+      origin: "*",
+    },
+  });
 
   io.on("connection", (socket) => {
-    console.log("A user connected", socket);
+    console.log("A user connected", socket.id );
 
-    socketListeners(socket);
+    socketListeners(socket, io);
 
     socket.on("disconnect", () => {
       console.log("A user disconnected");

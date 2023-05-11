@@ -1,4 +1,28 @@
-import { Socket } from "socket.io";
+import { Server, Socket } from "socket.io";
 
-//Link up all the sockets to the actual function which manages the business logic
-export default function (socket: Socket) {}
+let interval: NodeJS.Timeout | null = null;
+
+export default function (socket: Socket, io: Server) {
+  socket.on("timer-start", (time: number) => {
+    if (!interval) {
+      interval = setInterval(() => {
+        time--;
+        if (time === 0) {
+          clearInterval(interval!);
+          interval = null;
+        } else {
+          io.emit("timer", time);
+          console.log(time);
+        }
+      }, 1000);
+    }
+  });
+
+  socket.on("disconnect", () => {
+    if (io.engine?.clientsCount === 0) {
+      clearInterval(interval!);
+      interval = null;
+    }
+    console.log("A user disconnected");
+  });
+}
