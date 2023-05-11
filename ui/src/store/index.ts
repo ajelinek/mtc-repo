@@ -2,7 +2,7 @@ import { createSignal } from 'solid-js'
 
 import socket from '../api/socket'
 
-socket.on('timer', (time: number) => {
+socket.on('timerUpdate', (time: number) => {
   console.log('timer', time)
   timerSignal.setTimer(time)
 })
