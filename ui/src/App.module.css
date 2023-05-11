@@ -1,5 +1,6 @@
 .main {
-    height: 100vh;
-    min-height: 100vh;
-    background-color: #2d3036;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #2d3036;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

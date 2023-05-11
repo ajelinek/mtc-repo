@@ -4,10 +4,11 @@ const Meeting = lazy(() => import('./pages/Meeting'))
 const NoMeeting = lazy(() => import('./pages/NoMeeting'))
 const Home = lazy(() => import('./pages/Home/'))
 
-import "./styles/base-element.css"
-import "./styles/design-tokens.css"
-import "./styles/reset.css"
-import styles from "./App.module.css";
+import './styles/base-element.css'
+import './styles/design-tokens.css'
+import './styles/reset.css'
+import './styles/global.css'
+import styles from './App.module.css'
 
 export default function App() {
   return (
