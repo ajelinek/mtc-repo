@@ -5,7 +5,7 @@ interface ServerToClientEvents {
 }
 
 interface ClientToServerEvents {
-  hello: () => void;
+  timerStart: (seconds: number) => void;
 }
 
 interface InterServerEvents {

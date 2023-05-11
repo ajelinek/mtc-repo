@@ -6,6 +6,7 @@ export { publicProcedure, router, t } from "./trpc";
 import socketListeners from "./sockets";
 import { Server } from "socket.io";
 import http from "http";
+import { myServer } from "../types";
 
 export function mountTRPCServer(app: Express) {
   app.use(
@@ -19,19 +20,14 @@ export function mountTRPCServer(app: Express) {
 
 //create a mount function for sockets that takes a socket.io server instance
 export function mountSockets(server: http.Server) {
-  const io = new Server<
-    ClientToServerEvents,
-    ServerToClientEvents,
-    InterServerEvents,
-    SocketData
-  >(server, {
+  const io: myServer = new Server(server, {
     cors: {
       origin: "*",
     },
   });
 
   io.on("connection", (socket) => {
-    console.log("A user connected", socket.id );
+    console.log("A user connected", socket.id);
 
     socketListeners(socket, io);
 
