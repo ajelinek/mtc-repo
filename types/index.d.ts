@@ -1,9 +1,19 @@
+interface Participant {
+  name: string;
+  id: string;
+}
+
+interface ParticipantUpdate {
+  participants: Participant[];
+}
+
 interface ServerToClientEvents {
-  timerUpdate: (time: number) => void;
+  meetingTimeUpdate: (time: number) => void;
+  meetingParticipantsUpdate: () => ParticipantUpdate;
 }
 
 interface ClientToServerEvents {
-  timerStart: (seconds: number) => void;
+  joinMeeting: (name: string) => void;
 }
 
 interface InterServerEvents {

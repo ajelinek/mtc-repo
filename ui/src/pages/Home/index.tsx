@@ -1,7 +1,7 @@
 import client from '../../api/trpc'
 import { createSignal } from 'solid-js'
 import './style.scss'
-import { startTimer, timerSignal } from '../../store'
+import { timerSignal, meeting } from '../../store'
 import TimeDisplay from '../../components/Time'
 
 const [meetingId, setMeetingId] = createSignal<string | null>(null)
@@ -35,7 +35,7 @@ const Home = () => {
         <button class="button1" onClick={(e) => handler(e)}>
           Create Meeting
         </button>
-        <button class="button1" onClick={() => startTimer()}>
+        <button class="button1" onClick={() => meeting.joinMeeting(meetingId)}>
           Start
         </button>
       </div>
