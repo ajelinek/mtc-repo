@@ -10,7 +10,7 @@
     "test": "npm run test -w ui",
     "start": "concurrently npm:start:* -c red,blue",
     "start:api": "npm run dev:server -w api",
-    "start:ui": "npm run dev -w ui"
+    "start:ui": "npm run dev --host -w ui"
   },
   "author": "",
   "license": "ISC",
