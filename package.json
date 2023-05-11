@@ -7,7 +7,10 @@
     "url": "git+https://github.com/chicago-mtc/mtc-repo.git"
   },
   "scripts": {
-    "test": "npm run test -w ui"
+    "test": "npm run test -w ui",
+    "start": "concurrently npm:start:* -c red,blue",
+    "start:api": "npm run dev:server -w api",
+    "start:ui": "npm run dev -w ui"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +31,6 @@
     "rollup-plugin-postcss": "^4.0.2"
   },
   "dependencies": {
-    "cors": "^2.8.5"
+    "concurrently": "^8.0.1"
   }
 }
