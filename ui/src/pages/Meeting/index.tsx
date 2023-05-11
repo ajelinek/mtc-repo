@@ -4,6 +4,7 @@ import { startTimer, timerSignal } from '../../store'
 import style from './index.module.css'
 import { createSignal } from 'solid-js'
 import AgendaItem from '../../components/AgendaItem/AgendaItem'
+import { joinMeeting } from '../../store/meeting'
 
 export default function Meeting() {
   const [agendaItems, setAgendaItems] = createSignal<string[]>([])
@@ -19,7 +20,8 @@ export default function Meeting() {
     <>
       <div class={style.meetingHeader}>
         <h2>Meeting {id}</h2>
-        <button onClick={() => startTimer()}>Start</button>
+        <button onClick={() => joinMeeting(id)}>Join Meeting</button>
+        <button onClick={() => startTimer(id)}>Start</button>
       </div>
       <div>
         <TimerDisplay seconds={timerSignal.value} />
