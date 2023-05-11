@@ -1,26 +1,26 @@
 interface Participant {
-  name: string;
-  id: string;
+  participantId: string
+  funnyName: string
 }
 
 interface ParticipantUpdate {
-  participants: Participant[];
+  participants: Participant[]
 }
 
 interface ServerToClientEvents {
-  meetingTimeUpdate: (time: number) => void;
-  meetingParticipantsUpdate: () => ParticipantUpdate;
+  meetingTimeUpdate: (time: number) => void
+  meetingParticipantsUpdate: () => ParticipantUpdate
 }
 
 interface ClientToServerEvents {
-  joinMeeting: (name: string) => void;
+  joinMeeting: (name: string, cb: (participant: Participant) => void) => void
 }
 
 interface InterServerEvents {
-  ping: () => void;
+  ping: () => void
 }
 
 interface SocketData {
-  name: string;
-  age: number;
+  participant: Participant
+  meetingId: string
 }

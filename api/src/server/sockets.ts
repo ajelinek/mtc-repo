@@ -1,28 +1,25 @@
-import { Server, Socket } from "socket.io";
-import { myServer, mySocket } from "../types";
+import { joinMeeting } from '../providers/meetings'
+import { createParticipant } from '../providers/participants'
+import { myServer } from '../types'
 
-let interval: NodeJS.Timeout | null = null;
-
-export default function (socket: mySocket, io: myServer) {
-  socket.on("timerStart", (seconds: number) => {
-    if (!interval) {
-      interval = setInterval(() => {
-        seconds--;
-        if (seconds === 0) {
-          clearInterval(interval!);
-          interval = null;
-        } else {
-          io.emit("timerUpdate", seconds);
-        }
-      }, 1000);
+export function mountSockets(io: myServer) {
+  io.on('connection', (socket) => {
+    console.log('A user connected', socket.id)
+    socket.data = {
+      meetingId: '',
+      participant: createParticipant()
     }
-  });
 
-  socket.on("disconnect", () => {
-    if (io.engine?.clientsCount === 0) {
-      clearInterval(interval!);
-      interval = null;
-    }
-    console.log("A user disconnected");
-  });
+    socket.on('joinMeeting', (meetingId, cb) => {
+      socket.join(meetingId)
+      socket.data.meetingId = meetingId
+      joinMeeting(meetingId, socket.data.participant!)
+      cb(socket.data.participant!)
+      io.to(meetingId).emit('meetingParticipantsUpdate')
+    })
+
+    socket.on('disconnect', () => {
+      console.log('A user disconnected')
+    })
+  })
 }
