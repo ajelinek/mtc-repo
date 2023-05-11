@@ -1,0 +1,25 @@
+button {
+  border-radius: 12px;
+  padding: 15px 20px;
+  font-size: var(--lc-s-font-size-700);
+  background-color: white;
+  color: black;
+  border: 2px solid var(--lc-s-color-primary-500);
+}
+
+button:hover {
+  background-color: var(--lc-s-color-primary-500);
+  color: black;
+  cursor: pointer;
+}
+
+.small-button {
+  white-space: nowrap;
+  font-size: var(--lc-s-font-size-200) !important;
+}
+
+input {
+  border-radius: 12px;
+  font-size: var(--lc-s-font-size-200);
+  border: 2px solid var(--lc-s-color-primary-500);
+}

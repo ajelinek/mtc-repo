@@ -1,0 +1,35 @@
+.content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  gap: 20px;
+}
+
+.meeting-header {
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.agendaItemInput {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+}
+
+.agendaItems {
+  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 15px;
+}
+
+.agendaItems div {
+  padding: 20px;
+  background-color: var(--lc-s-color-primary-500);
+}
