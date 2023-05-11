@@ -32,12 +32,18 @@ const Home = () => {
         </div>
       </div>
       <div class="content">
-        <button class="button1" onClick={(e) => handler(e)}>Create Meeting</button>
+        <button class="button1" onClick={(e) => handler(e)}>
+          Create Meeting
+        </button>
+        <button class="button1" onClick={() => startTimer()}>
+          Start
+        </button>
       </div>
       <div class="debug">
-        <p>Timer: <TimeDisplay seconds={timerSignal.value} /></p>
-        <button class="button1" onClick={() => startTimer()}>Start</button>
-        <button class="button1" onClick={(e) => handler(e)}>Test</button>
+        <p>
+          Timer: <TimeDisplay seconds={timerSignal.value} />
+        </p>
+
         <h3>Meeting Id: {meetingId()}</h3>
       </div>
     </>
