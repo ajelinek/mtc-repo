@@ -30,8 +30,7 @@ const Home = () => {
   return (
     <>
       <h3>Home</h3>
-      <p>{Math.floor(timerSignal.value() / 60)}:{Math.floor(timerSignal.value() % 60)}</p>
-      <p>Timer: <TimeDisplay seconds={timerSignal.value() || 0} /></p>
+      <p>Timer: <TimeDisplay seconds={timerSignal.value} /></p>
       <button onClick={() => startTimer()}>Start</button>
       <button onClick={(e) => handler(e)}>Test</button>
       Meeting Id: {meetingId()}

@@ -1,27 +1,20 @@
-import { createSignal } from 'solid-js';
+import { createSignal, createComputed, Accessor, createEffect } from 'solid-js';
 
 interface TimeDisplayProps {
-    seconds: number
+    seconds: Accessor<number>
 }
 
 export default function TimeDisplay(props: TimeDisplayProps) {
-    const [minutes, setMinutes] = createSignal(Math.floor(props.seconds / 60));
-    const [seconds, setSeconds] = createSignal(props.seconds % 60);
 
-    function formatTime(value: number) {
-        return value < 10 ? `0${value}` : `${value}`;
-    }
+    const [secondsDisplay, setSecondsDisplay] = createSignal('00');
+    const [minutesDisplay, setMinutesDisplay] = createSignal('00');
 
-    function updateDisplay() {
-        setMinutes(Math.floor(props.seconds / 60));
-        setSeconds(props.seconds % 60);
-    }
+    createEffect(() => {
+        if(props.seconds() === -1 ) return
+        const seconds = props.seconds() % 60
+        setSecondsDisplay(seconds === 0 ? '00' : seconds.toString())
+        setMinutesDisplay(Math.floor(props.seconds() / 60).toString())
+    })
 
-    updateDisplay();
-
-    return (
-        <span>
-            {minutes()}:{formatTime(seconds())}
-        </span>
-    );
+    return (<span>{minutesDisplay()}:{secondsDisplay()} </span>);
 }
