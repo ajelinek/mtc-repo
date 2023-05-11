@@ -1,9 +1,9 @@
 import { Server, Socket } from "socket.io";
-import { mySocket } from "../types";
+import { myServer, mySocket } from "../types";
 
 let interval: NodeJS.Timeout | null = null;
 
-export default function (socket: mySocket, io: Server) {
+export default function (socket: mySocket, io: myServer) {
   socket.on("timerStart", (seconds: number) => {
     if (!interval) {
       interval = setInterval(() => {
@@ -12,7 +12,7 @@ export default function (socket: mySocket, io: Server) {
           clearInterval(interval!);
           interval = null;
         } else {
-          io.emit("timer", seconds);
+          io.emit("timerUpdate", seconds);
           console.log(seconds);
         }
       }, 1000);

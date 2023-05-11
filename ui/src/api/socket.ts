@@ -1,5 +1,5 @@
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client'
 
-const socket = io('http://localhost:2021');
+const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io('http://localhost:2021')
 
-export default socket;
+export default socket

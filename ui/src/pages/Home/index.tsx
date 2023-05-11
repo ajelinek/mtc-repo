@@ -35,10 +35,9 @@ const Home = () => {
         <button class="button1" onClick={(e) => handler(e)}>Create Meeting</button>
       </div>
       <div class="debug">
-        <p>{Math.floor(timerSignal.value() / 60)}:{Math.floor(timerSignal.value() % 60)}</p>
-        <p>Timer: <TimeDisplay seconds={timerSignal.value() || 0} /></p>
-        <button onClick={() => startTimer()}>Start</button>
-        <button onClick={(e) => handler(e)}>Test</button>
+        <p>Timer: <TimeDisplay seconds={timerSignal.value} /></p>
+        <button class="button1" onClick={() => startTimer()}>Start</button>
+        <button class="button1" onClick={(e) => handler(e)}>Test</button>
         <h3>Meeting Id: {meetingId()}</h3>
       </div>
     </>
