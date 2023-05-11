@@ -1,5 +1,6 @@
 import client from '../../api/trpc'
 import { createSignal } from 'solid-js'
+import './style.scss'
 
 const [meetingId, setMeetingId] = createSignal<string | null>(null)
 
@@ -13,22 +14,27 @@ async function handler(e: MouseEvent) {
   }
 }
 
-// const handler = async (e: MouseEvent) => {
-//   try {
-//     const id = await client.newMeeting.query()
-//     console.log(id)
-//     setMeetingId(id)
-//   } catch (e) {
-//     console.error(e)
-//   }
-// }
-
 const Home = () => {
   return (
     <>
-      <h3>Home</h3>
-      <button onClick={(e) => handler(e)}>Test</button>
-      Meeting Id: {meetingId()}
+      <div class="app-header">
+        <div class="left-half">
+          <div class="coffee-mug">
+            <div class="coffee-container">
+              <div class="coffee"></div>
+            </div>
+          </div>
+        </div>
+        <div class="right-half">
+          <h1>Lean Coffee</h1>
+        </div>
+      </div>
+      <div class="content">
+        <button class="button1" onClick={(e) => handler(e)}>Create Meeting</button>
+      </div>
+      <div class="debug">
+        <h3>Meeting Id: {meetingId()}</h3>
+      </div>
     </>
   )
 }
